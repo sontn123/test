@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Ecommage_Test::css/swiper.css"/>
+    </head>
+    <referenceContainer name="content">
+        <block class="Ecommage\Test\Block\Image" name="test_index_image" template="Ecommage_Test::image.phtml" />
+    </referenceContainer>
+</page>

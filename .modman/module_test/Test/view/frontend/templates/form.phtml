@@ -1,0 +1,82 @@
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">Slide 1</div>
+        <div class="swiper-slide">Slide 2</div>
+        <div class="swiper-slide">Slide 3</div>
+        <div class="swiper-slide">Slide 4</div>
+        <div class="swiper-slide">Slide 5</div>
+        <div class="swiper-slide">Slide 6</div>
+        <div class="swiper-slide">Slide 7</div>
+        <div class="swiper-slide">Slide 8</div>
+        <div class="swiper-slide">Slide 9</div>
+        <div class="swiper-slide">Slide 10</div>
+    </div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
+<h3>Du bao thoi tiet</h3>
+<div id="info" style="display: none;">Khoảng đêm nay (21/2), bộ phận không khí lạnh này sẽ ảnh hưởng đến một số nơi thuộc vùng núi Bắc Bộ; ngày mai (22/2) sẽ ảnh hưởng đến các tỉnh phía Đông Bắc Bộ, Bắc Trung Bộ sau đó sẽ ảnh hưởng một số nơi ở phía Tây Bắc Bộ và Trung Trung Bộ. Từ đêm nay, gió chuyển hướng Đông Bắc trong đất liền cấp 2-3.
+
+    Do ảnh hưởng của không khí lạnh, từ đêm nay ở các tỉnh phía Đông Bắc Bộ và Bắc Trung Bộ có mưa, mưa rào và có nơi có dông.
+
+    Từ ngày mai, ở các tỉnh Đông Bắc Bộ và Bắc Trung Bộ trời rét về đêm và sáng sớm. Do đợt không khí lạnh có cường độ không mạnh nên nhiệt độ giảm không sâu, thấp nhất ở ngưỡng 17-20 độ C, vùng núi 14-17 độ C.
+
+    Từ đêm nay, ở Bắc vịnh Bắc Bộ và khu vực Bắc Biển Đông gió chuyển hướng Đông Bắc mạnh dần lên cấp 6, giật cấp 7; biển động.
+
+    Thời tiết Hà Nội từ ngày mai (22/2) có mưa, mưa rào rải rác. Trời rét về đêm và sáng.
+</div>
+<button id="toggle">Hide/Show</button>
+<form id="form_data">
+    Email: <input type="text" name="email">
+    FullName: <input type="text" name="fullname">
+              <button id="submit">Submit</button>
+</form>
+<script>
+
+    require(['jquery'], function($) {
+        $('#toggle').click(function () {
+           $('#info').slideToggle();
+        });
+    });
+
+    require(['jquery','swiper'], function($, Swiper) {
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            slidesPerGroup: 3,
+            loop: true,
+            loopFillGroupWithBlank: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    });
+    require(["jquery"],function($){
+        $("#submit").click(function (event) {
+            var data_form = $('#form_data').serialize();
+            var url_action = "<?php echo $this->getUrl()."test/index/ajax"; ?>";
+            // console.log(url);
+            // console.log(data_form);
+            event.preventDefault();
+            $.ajax({
+                method : "POST",
+                data : data_form,
+                url : url_action,
+                dataType : "JSON"
+
+            }).done(function (res) {
+                // console.log(res.msg);
+                 if (res.err == 0){
+                     alert(res.msg);
+                 }
+
+            });
+        });
+    });
+</script>
